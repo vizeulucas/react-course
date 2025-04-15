@@ -1,5 +1,5 @@
 import reactImg from './assets/react-core-concepts.png'; // import images so it can be handle better in production and optimized.
-import componentsImg from './assets/components.png';
+import { CORE_CONCEPTS } from "./data"; // importing like that cause CORE_CONCEPTS is not a default export from the file
 
 const reactDescriptions = ["Fundamental", "Crucial", "Core"];
 
@@ -23,14 +23,13 @@ function Header() {
     );
 }
 
-function CoreConcepts(props) {
-
-
+// using object destructuring to get a more readable code
+function CoreConcepts({image, title, description}) {
     return (
         <li>
-            <img src="" alt=""/>
-            <h3>TITLE</h3>
-            <p>DESCRIPTION</p>
+            <img src={image} alt={title}/>
+            <h3>{title}</h3>
+            <p>{description}</p>
         </li>
     );
 }
@@ -42,14 +41,12 @@ function App() {
             <main>
                 <section id='core-concepts'>
                     <h2>Time to get started!</h2>
-                    <CoreConcepts
-                        title="Components"
-                        description="The core UI building block"
-                        image={componentsImg}
-                    />
-                    <CoreConcepts />
-                    <CoreConcepts />
-                    <CoreConcepts />
+                    <ul>
+                        <CoreConcepts {...CORE_CONCEPTS[0]} />
+                        <CoreConcepts {...CORE_CONCEPTS[1]} />
+                        <CoreConcepts {...CORE_CONCEPTS[2]} />
+                        <CoreConcepts {...CORE_CONCEPTS[3]} />
+                    </ul>
                 </section>
             </main>
         </div>
