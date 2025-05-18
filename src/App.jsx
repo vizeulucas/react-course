@@ -1,11 +1,14 @@
+import { useState } from "react";
 import { CORE_CONCEPTS } from "./data"; // importing like that cause CORE_CONCEPTS is not a default export from the file
 import Header from "./components/Header";
 import CoreConcepts from "./components/CoreConcept";
 import TabButton from "./components/tabButton";
 
 function App() {
-    const handleClick = () => {
-        console.log("hello world")
+   const [selectedTopic, setSelectedTopic] = useState("initial value");
+
+    const handleClick = (selected) => {
+        setSelectedTopic(selected);
     }
 
 
@@ -24,12 +27,12 @@ function App() {
                 </section>
                 <section id="examples">
                     <menu>
-                        <TabButton onSelect={handleClick}>Components</TabButton>
-                        <TabButton onSelect={handleClick}>JSX</TabButton>
-                        <TabButton onSelect={handleClick}>Props</TabButton>
-                        <TabButton onSelect={handleClick}>State</TabButton>
+                        <TabButton onSelect={() => handleClick('components')}>Components</TabButton>
+                        <TabButton onSelect={() => handleClick('jsx')}>JSX</TabButton>
+                        <TabButton onSelect={() => handleClick('props')}>Props</TabButton>
+                        <TabButton onSelect={() => handleClick('state')}>State</TabButton>
                     </menu>
-
+                    {selectedTopic}
                 </section>
             </main>
         </div>
